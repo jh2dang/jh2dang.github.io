@@ -40,7 +40,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "VITE_CHAT_API_KEY=${{ secrets.VITE_CHAT_API_KEY }}" >> $GITHUB_ENV
+          echo "REACT_APP_CHAT_API_KEY=${{ secrets.REACT_APP_CHAT_API_KEY }}" >> $GITHUB_ENV
       - run: npm run build
         env:
           CI: false
