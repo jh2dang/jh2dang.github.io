@@ -51,7 +51,6 @@ const Chatbot = () => {
   };
 
   const handleKeyDown = (event) => {
-    console.log(apiKey);
     if (event.key === "Enter") {
       handleSendMessage();
     }
