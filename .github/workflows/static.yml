@@ -34,11 +34,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - uses: actions/setup-node@v3
-      - run: npm ci
         with:
           node-version: 16
           # cache: 'npm'
 
+      - run: npm ci
       - name: Set environment variables
         run: |
           echo "REACT_APP_CHAT_API_KEY=${{ secrets.REACT_APP_CHAT_API_KEY }}" >> $GITHUB_ENV
