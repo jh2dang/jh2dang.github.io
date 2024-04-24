@@ -58,7 +58,7 @@ const Chatbot = () => {
 
   return (
     <div id="Chatbot">
-      <h1>gpt-3.5-turbo (viteX)</h1>
+      <h1>gpt-3.5-turbo (viteX, ie11)</h1>
       <div className="chatDiv">
         {loading && (
           <span className="messageWait">답변을 기다리고 있습니다</span>
