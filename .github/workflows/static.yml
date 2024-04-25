@@ -36,9 +36,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.16.0
-      - run: node --version
-        env:
-          NODE_OPTIONS: "--openssl-legacy-provider"
       
       - run: npm ci
       - name: Set environment variables
@@ -47,6 +44,7 @@ jobs:
       - run: npm run build
         env:
           CI: false
+          NODE_OPTIONS: "--openssl-legacy-provider"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
