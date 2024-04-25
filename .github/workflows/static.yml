@@ -36,7 +36,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.16.0
-      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
+      - name: Set NODE_OPTIONS environment variable
+        run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       
       - run: npm ci
       - name: Set environment variables
