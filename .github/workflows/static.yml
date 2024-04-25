@@ -35,8 +35,7 @@ jobs:
         uses: actions/configure-pages@v5
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
-          # cache: 'npm'
+          node-version: 18.16.0
 
       - run: npm ci
       - name: Set environment variables
