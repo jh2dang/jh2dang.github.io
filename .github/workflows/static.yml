@@ -33,23 +33,27 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+        # @v4를 사용해야 노드16에러가 뜨지 않는다.
       - uses: actions/setup-node@v4
         with:
           node-version: 18.16.0
-      
+
       - run: npm ci
       - name: Set environment variables
         run: |
           echo "REACT_APP_CHAT_API_KEY=${{ secrets.REACT_APP_CHAT_API_KEY }}" >> $GITHUB_ENV
+          echo "REACT_APP_GEMINI_API_KEY=${{ secrets.REACT_APP_GEMINI_API_KEY }}" >> $GITHUB_ENV
       - run: npm run build
         env:
           CI: false
+          # 깃헙 환경변수가 아닌, 그냥 변수로 바로 넣어주기
           NODE_OPTIONS: "--openssl-legacy-provider"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './build'
+          path: "./build"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
