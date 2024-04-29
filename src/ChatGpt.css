@@ -1,0 +1,94 @@
+#ChatbotGpt {
+  background-color: rgb(240, 247, 243);
+  margin-bottom: 10px;
+  width: 90%;
+  /* max-width:  */
+  height: 75px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#ChatbotGemini {
+  background-color: rgb(240, 244, 255);
+  margin-bottom: 10px;
+  width: 90%;
+  /* max-width:  */
+  height: 75px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.chatGptLogoBox {
+  background-color: #74aa9c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  box-shadow: 3px 3px 12px -1px #dadada;
+}
+
+.chatGptLogo {
+  width: 40px;
+  height: 40px;
+}
+
+.geminiLogoBox {
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  box-shadow: 3px 3px 12px -1px #dadada;
+}
+
+.geminiLogo {
+  width: 30px;
+  height: 30px;
+}
+
+.contentBox {
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.loadingBox {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.messageWait {
+  font-size: 13px;
+}
+
+.message {
+  background-color: #ffffff;
+  width: 80%;
+  /* height: auto; */
+  margin-bottom: 5px;
+  font-size: 13px;
+  margin: 5px 5px 0 15px;
+  padding: 5px;
+  border-radius: 5px 5px 5px 0;
+  line-height: 1.5em;
+}

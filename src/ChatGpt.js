@@ -1,8 +1,17 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from "react";
+import "./ChatGpt.css";
+import logo from "./chatgpt.png";
 
 const ChatGpt = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
   const apiKey = process.env.REACT_APP_CHAT_API_KEY;
   const apiEndpoint = "https://api.openai.com/v1/chat/completions";
@@ -11,11 +20,20 @@ const ChatGpt = forwardRef((props, ref) => {
     setMessages((prevMessages) => [...prevMessages, { sender, message }]);
   };
 
+  // 스크롤
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   const handleSendMessage = async () => {
     const message = props.inputMessage;
     if (message.length === 0) return;
 
-    addMessage("user", message);
+    // addMessage("user", message);
     setLoading(true);
 
     try {
@@ -53,28 +71,31 @@ const ChatGpt = forwardRef((props, ref) => {
   }));
 
   return (
-    <div id="Chatbot">
-      <h1>gpt-3.5-turbo (viteX, ie11)</h1>
-      <div className="chatDiv">
-        {loading && (
-          <span className="messageWait">답변을 기다리고 있습니다</span>
-        )}
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
-            {`${msg.sender === "user" ? "나" : "챗봇"} : ${msg.message}`}
-          </div>
-        ))}
+    <div id="ChatbotGpt">
+      <div className="logoContainer">
+        <div className="chatGptLogoBox">
+          <img src={logo} alt="..." className="chatGptLogo" />
+        </div>
       </div>
-      {/* <div className="inputDiv">
-        <input
-          type="text"
-          placeholder="메시지를 입력하세요"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={handleSendMessage}>전송</button>
-      </div> */}
+
+      <div className="contentBox">
+        {loading ? (
+          <div className="loadingBox">
+            <span className="messageWait">
+              Gpt-3.5-turbo가 답변을 생성하고 있습니다...
+            </span>
+          </div>
+        ) : (
+          <>
+            {messages.map((msg, index) => (
+              <div key={index} className="message">
+                {msg.message}
+              </div>
+            ))}
+          </>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
     </div>
   );
 });

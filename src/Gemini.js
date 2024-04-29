@@ -3,23 +3,37 @@ import React, {
   useEffect,
   forwardRef,
   useImperativeHandle,
+  useRef,
 } from "react";
+import logo from "./gemini.png";
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const Gemini = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
   const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
+
   const addMessage = (sender, message) => {
     setMessages((prevMessages) => [...prevMessages, { sender, message }]);
   };
+
+  // 스크롤
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSendMessage = async () => {
     const message = props.inputMessage;
     if (message.length === 0) return;
 
-    addMessage("user", message);
+    // addMessage("user", message);
     setLoading(true);
 
     // Access your API key as an environment variable
@@ -47,29 +61,30 @@ const Gemini = forwardRef((props, ref) => {
   }));
 
   return (
-    <div>
-      <div id="Chatbot">
-        <h1>Gemini (Google)</h1>
-        <div className="chatDiv">
-          {loading && (
-            <span className="messageWait">답변을 기다리고 있습니다</span>
-          )}
-          {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.sender}`}>
-              {`${msg.sender === "user" ? "나" : "챗봇"} : ${msg.message}`}
-            </div>
-          ))}
+    <div id="ChatbotGemini">
+      <div className="logoContainer">
+        <div className="geminiLogoBox">
+          <img src={logo} alt="..." className="geminiLogo" />
         </div>
-        {/* <div className="inputDiv">
-          <input
-            type="text"
-            placeholder="메시지를 입력하세요"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button onClick={handleSendMessage}>전송</button>
-        </div> */}
+      </div>
+
+      <div className="contentBox">
+        {loading ? (
+          <div className="loadingBox">
+            <span className="messageWait">
+              Gemini가 답변을 생성하고 있습니다...
+            </span>
+          </div>
+        ) : (
+          <>
+            {messages.map((msg, index) => (
+              <div key={index} className="message">
+                {msg.message}
+              </div>
+            ))}
+          </>
+        )}
+        <div ref={messagesEndRef} />
       </div>
     </div>
   );

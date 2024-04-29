@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import ChatGpt from "./ChatGpt";
 import Gemini from "./Gemini";
 import "./App.css";
-import Claude3 from "./Anthropic";
 
 const App = () => {
   const [userInput, setUserInput] = useState("");
@@ -25,24 +24,25 @@ const App = () => {
   };
 
   return (
-    <>
-      <div className="inputContainer">
-        <input
-          className="inputField"
-          type="text"
-          placeholder="메시지를 입력하세요"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button className="submitButton" onClick={Go}>
-          전송
-        </button>
+    <div className="container">
+      <div className="subContainer">
+        <div className="inputContainer content">
+          <input
+            className="inputField"
+            type="text"
+            placeholder="무엇이든 물어보세요."
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <div className="submitButton" onClick={Go}>
+            전송
+          </div>
+        </div>
+        <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
+        <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
       </div>
-      <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
-      <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
-      <Claude3 />
-    </>
+    </div>
   );
 };
 
