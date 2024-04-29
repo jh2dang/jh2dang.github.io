@@ -44,6 +44,7 @@ jobs:
         run: |
           echo "REACT_APP_CHAT_API_KEY=${{ secrets.REACT_APP_CHAT_API_KEY }}" >> $GITHUB_ENV
           echo "REACT_APP_GEMINI_API_KEY=${{ secrets.REACT_APP_GEMINI_API_KEY }}" >> $GITHUB_ENV
+          echo "REACT_APP_ANTROPIC_API_KEY=${{ secrets.REACT_APP_ANTROPIC_API_KEY }}" >> $GITHUB_ENV
       - run: npm run build
         env:
           CI: false
