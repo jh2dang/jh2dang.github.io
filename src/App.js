@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import ChatGpt from "./ChatGpt";
 import Gemini from "./Gemini";
 import "./App.css";
+import Claude3 from "./Anthropic";
 
 const App = () => {
   const [userInput, setUserInput] = useState("");
@@ -40,6 +41,7 @@ const App = () => {
       </div>
       <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
       <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
+      <Claude3 />
     </>
   );
 };
