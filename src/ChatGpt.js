@@ -105,7 +105,9 @@ const ChatGpt = forwardRef((props, ref) => {
         {loading ? (
           <div className="loadingBox">
             <span className="messageWait">
-              Gpt-3.5-turbo가 답변을 생성하고 있습니다...
+              Gpt-3.5-turbo가 답변을
+              <br />
+              생성하고 있습니다...
             </span>
           </div>
         ) : (

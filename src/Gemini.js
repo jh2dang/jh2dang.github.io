@@ -87,9 +87,11 @@ const Gemini = forwardRef((props, ref) => {
         </div> */}
         {loading ? (
           <div className="loadingBox">
-            <span className="messageWait">
-              Gemini가 답변을 생성하고 있습니다...
-            </span>
+            <div className="messageWait">
+              Gemini가 답변을
+              <br />
+              생성하고 있습니다...
+            </div>
           </div>
         ) : (
           <>
