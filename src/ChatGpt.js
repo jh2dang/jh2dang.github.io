@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from "react";
 import "./ChatGpt.css";
-import logo from "./chatgpt.png";
+import logo from "./minigpt.png";
 
 const ChatGpt = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);
@@ -48,8 +48,8 @@ const ChatGpt = forwardRef((props, ref) => {
           messages: [{ role: "user", content: message }],
           max_tokens: 1024, // 답변 최대 글자 수,
           top_p: 1, // 다음 단어를 선택할 때 상위 p%의 확률 분포를 사용하는 매개변수, 높을수록 안정된 선택
-          temperature: 1, // 답변의 다양성과 창의성, 낮을수록 일관적 (0~2)
-          frequency_penalty: 0.8, // 전문적 단어의 빈도, 낮을수록 전문적 (0~1)
+          temperature: 0.3, // 답변의 다양성과 창의성, 낮을수록 일관적 (0~2)
+          frequency_penalty: 0.3, // 전문적 단어의 빈도, 낮을수록 전문적 (0~1)
           presence_penalty: 0.7, // 반복되는 구문 억제, 낮을수록 억제하지 않음 (0~1)
           stop: ["문장 생성 중단 단어"],
         }),
@@ -58,6 +58,7 @@ const ChatGpt = forwardRef((props, ref) => {
       const data = await response.json();
       console.log(data);
       const aiResponse = data.choices?.[0]?.message?.content || "No response";
+      console.log("챗GPT 답변:", aiResponse);
       addMessage("bot", aiResponse);
     } catch (error) {
       console.error("오류 발생!", error);

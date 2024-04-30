@@ -39,8 +39,10 @@ const App = () => {
             전송
           </div>
         </div>
-        <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
-        <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
+        <div className="ContentContainer">
+          <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
+          <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
+        </div>
       </div>
     </div>
   );

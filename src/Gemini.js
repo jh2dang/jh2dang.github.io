@@ -5,7 +5,7 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
-import logo from "./gemini.png";
+import logo from "./minigemini.png";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -48,6 +48,7 @@ const Gemini = forwardRef((props, ref) => {
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = await response.text();
+      console.log("제미나이 답변:", text);
       addMessage("bot", text);
     } catch (error) {
       console.error("Error fetching data:", error);
