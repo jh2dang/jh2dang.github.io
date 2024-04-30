@@ -5,7 +5,9 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
+import "./ChatGpt.css";
 import logo from "./minigemini.png";
+import ReactMarkdown from "react-markdown";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -47,6 +49,7 @@ const Gemini = forwardRef((props, ref) => {
     try {
       const result = await model.generateContent(prompt);
       const response = await result.response;
+      console.log("제미나이 응답:", response);
       const text = await response.text();
       console.log("제미나이 답변:", text);
       addMessage("bot", text);
@@ -70,6 +73,18 @@ const Gemini = forwardRef((props, ref) => {
       </div>
 
       <div className="contentBox">
+        {/* <div className="message">
+          긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변
+          테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴
+          답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변
+          테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴
+          답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변
+          테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴
+          답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변
+          테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴
+          답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변
+          테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트 긴 답변 테스트
+        </div> */}
         {loading ? (
           <div className="loadingBox">
             <span className="messageWait">
@@ -80,7 +95,7 @@ const Gemini = forwardRef((props, ref) => {
           <>
             {messages.map((msg, index) => (
               <div key={index} className="message">
-                {msg.message}
+                <ReactMarkdown>{msg.message}</ReactMarkdown>
               </div>
             ))}
           </>

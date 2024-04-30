@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import "./ChatGpt.css";
 import logo from "./minigpt.png";
+import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 
 const ChatGpt = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);
@@ -45,7 +47,17 @@ const ChatGpt = forwardRef((props, ref) => {
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: message }],
+          messages: [
+            {
+              role: "user",
+              content: message,
+            },
+            // {
+            //   role: "user",
+            //   content:
+            //     message + "답변이 길다면, 적절히 문단을 나누어서 작성해 줘.",
+            // },
+          ],
           max_tokens: 1024, // 답변 최대 글자 수,
           top_p: 1, // 다음 단어를 선택할 때 상위 p%의 확률 분포를 사용하는 매개변수, 높을수록 안정된 선택
           temperature: 0.3, // 답변의 다양성과 창의성, 낮을수록 일관적 (0~2)
@@ -56,7 +68,7 @@ const ChatGpt = forwardRef((props, ref) => {
       });
 
       const data = await response.json();
-      console.log(data);
+      console.log("챗GPT 응답:", data);
       const aiResponse = data.choices?.[0]?.message?.content || "No response";
       console.log("챗GPT 답변:", aiResponse);
       addMessage("bot", aiResponse);
@@ -80,6 +92,16 @@ const ChatGpt = forwardRef((props, ref) => {
       </div>
 
       <div className="contentBox">
+        {/* <div className="message">첫번째 답변입니다</div>
+        <div className="message">
+          두번째
+          답변입니다아아아아아아아ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아
+        </div>
+        <div className="message">
+          세번째 답변입니다
+          ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+        </div>
+        <div className="message">네번째 답변입니다ㄴㄴㄴ</div> */}
         {loading ? (
           <div className="loadingBox">
             <span className="messageWait">
@@ -90,7 +112,7 @@ const ChatGpt = forwardRef((props, ref) => {
           <>
             {messages.map((msg, index) => (
               <div key={index} className="message">
-                {msg.message}
+                <ReactMarkdown>{msg.message}</ReactMarkdown>
               </div>
             ))}
           </>

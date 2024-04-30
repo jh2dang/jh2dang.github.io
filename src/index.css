@@ -1,3 +1,32 @@
+html,
+body {
+  height: 100%;
+}
+#wrapper {
+  height: 100%;
+}
+.section {
+  height: 100%;
+}
+
+p,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 5px;
+  margin-inline-end: 0px;
+  padding-inline-start: 10px;
+  unicode-bidi: isolate;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

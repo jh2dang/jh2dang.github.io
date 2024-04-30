@@ -1,9 +1,21 @@
+html,
+body {
+  height: 100%;
+}
+#wrapper {
+  height: 100%;
+}
+.section {
+  height: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   /* background-color: #61dafb; */
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .subContainer {
@@ -13,9 +25,9 @@
   flex-direction: column;
   background-color: #ffffff;
   width: 100%;
-  min-height: 170px;
-  height: 170px;
-  max-height: 170px;
+  min-height: 220px;
+  max-height: 220px;
+  height: 220px;
   /* background-color: #ccc; */
   max-width: 700px;
 }
@@ -33,18 +45,30 @@
 .inputField {
   padding: 6px;
   border: 1px solid #ccc;
+  border-right: none;
   border-radius: 5px 0 0 5px;
   /* margin-right: 10px; */
   width: 40%;
 }
 
 .submitButton {
-  padding: 7px;
+  padding: 7.5px;
   background-color: #bedfd4;
   color: #fff;
   border: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.ContentContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* background-color: aquamarine; */
+  height: 155px;
 }
 
 .submitButton:hover {

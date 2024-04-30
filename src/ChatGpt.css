@@ -2,9 +2,10 @@
   background-color: rgb(240, 247, 243);
   border: 1px solid #c4dfcf;
   border-radius: 5px;
-  width: 47%;
+  width: 100%;
+  margin-right: 1%;
   /* max-width:  */
-  height: 100px;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
@@ -16,9 +17,10 @@
   background-color: rgb(240, 244, 255);
   border: 1px solid #cedcff;
   border-radius: 5px;
-  width: 47%;
+  width: 100%;
+  margin-left: 1%;
   /* max-width:  */
-  height: 100px;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
@@ -26,15 +28,10 @@
   padding: 5px;
 }
 
-.ContentContainer {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
 .logoContainer {
   display: flex;
   align-items: flex-end;
+  height: 100%;
 }
 
 .chatGptLogoBox {
@@ -74,11 +71,11 @@
 }
 
 .contentBox {
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  height: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
 .loadingBox {
@@ -99,11 +96,14 @@
 .message {
   background-color: #ffffff;
   width: 80%;
-  /* height: auto; */
+  height: auto !important;
   margin-bottom: 5px;
   font-size: 13px;
   margin: 5px 5px 0 15px;
   padding: 5px;
   border-radius: 5px 5px 5px 0;
   line-height: 1.5em;
+  /* overflow: auto; */
+  /* white-space: pre-wrap; */
+  white-space: pre-line;
 }
