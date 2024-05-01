@@ -8,7 +8,6 @@ import React, {
 import "./ChatGpt.css";
 import logo from "./minigpt.png";
 import ReactMarkdown from "react-markdown";
-import Markdown from "react-markdown";
 
 const ChatGpt = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);

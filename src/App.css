@@ -25,10 +25,10 @@ body {
   flex-direction: column;
   background-color: #ffffff;
   width: 100%;
-  min-height: 220px;
-  max-height: 220px;
-  height: 220px;
-  /* background-color: #ccc; */
+  /* min-height: 180px;
+  max-height: 180px;
+  height: 180px; */
+  background-color: #ccc;
   max-width: 700px;
 }
 
@@ -68,7 +68,7 @@ body {
   width: 100%;
   justify-content: space-between;
   /* background-color: aquamarine; */
-  height: 155px;
+  height: 135px;
 }
 
 .submitButton:hover {

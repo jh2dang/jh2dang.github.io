@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import ChatGpt from "./ChatGpt";
 import Gemini from "./Gemini";
 import "./App.css";
+import minigemini from "./minigemini.png";
+import minigpt from "./minigpt.png";
 
 const App = () => {
   const [userInput, setUserInput] = useState("");
@@ -38,6 +40,12 @@ const App = () => {
           <div className="submitButton" onClick={Go}>
             전송
           </div>
+          {/* <div className="chatGptLogoBox">
+            <img src={minigpt} alt="..." className="chatGptLogo" />
+          </div>
+          <div className="geminiLogoBox">
+            <img src={minigemini} alt="..." className="geminiLogo" />
+          </div> */}
         </div>
         <div className="ContentContainer">
           <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
