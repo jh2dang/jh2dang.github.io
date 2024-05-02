@@ -28,8 +28,9 @@ body {
   /* min-height: 180px;
   max-height: 180px;
   height: 180px; */
-  background-color: #ccc;
+  /* background-color: #ccc; */
   max-width: 700px;
+  padding: 10px;
 }
 
 .inputContainer {
@@ -68,7 +69,14 @@ body {
   width: 100%;
   justify-content: space-between;
   /* background-color: aquamarine; */
-  height: 135px;
+  height: 300px;
+  /* background-color: #8ca59d; */
+}
+
+@media (max-width: 500px) {
+  .ContentContainer {
+    height: 165px;
+  }
 }
 
 .submitButton:hover {
