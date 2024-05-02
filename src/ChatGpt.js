@@ -20,9 +20,11 @@ const ChatbotGpt = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  display: ${(props) => (props.visible ? "flex" : "none")};
 `;
 
 const ChatGpt = forwardRef((props, ref) => {
+  console.log(props);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -95,10 +97,15 @@ const ChatGpt = forwardRef((props, ref) => {
     handleSendMessage,
   }));
 
+  console.log(props.showGpt);
+
   return (
-    <ChatbotGpt>
+    <ChatbotGpt visible={props.showGpt}>
       <div className="logoContainer">
-        <div className="chatGptLogoBox">
+        <div
+          className="chatGptLogoBox"
+          onClick={() => props.setShowGemini((prevState) => !prevState)}
+        >
           <img src={logo} alt="..." className="chatGptLogo" />
         </div>
       </div>

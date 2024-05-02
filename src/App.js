@@ -16,6 +16,10 @@ const App = () => {
   const chatGptRef = useRef({});
   const geminiRef = useRef({});
 
+  // display상태
+  const [showGpt, setShowGpt] = useState(true);
+  const [showGemini, setShowGemini] = useState(true);
+
   const Go = () => {
     // 자식 컴포넌트의 handleSendMessage 함수 호출
     chatGptRef.current.handleSendMessage();
@@ -54,9 +58,19 @@ const App = () => {
         </div>
         <div className="ContentContainer">
           <Empty />
-          <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
-          <Empty />
-          <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
+          <ChatGpt
+            ref={chatGptRef}
+            inputMessage={userInput.trim()}
+            showGpt={showGpt}
+            setShowGemini={setShowGemini}
+          />
+          {showGemini && showGpt && <Empty />}
+          <Gemini
+            ref={geminiRef}
+            inputMessage={userInput.trim()}
+            showGemini={showGemini}
+            setShowGpt={setShowGpt}
+          />
           <Empty />
         </div>
       </div>

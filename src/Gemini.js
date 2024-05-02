@@ -20,11 +20,13 @@ const ChatbotGemini = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  display: ${(props) => (props.visible ? "flex" : "none")};
 `;
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const Gemini = forwardRef((props, ref) => {
+  console.log(props);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -78,9 +80,12 @@ const Gemini = forwardRef((props, ref) => {
   }));
 
   return (
-    <ChatbotGemini>
+    <ChatbotGemini visible={props.showGemini}>
       <div className="logoContainer">
-        <div className="geminiLogoBox">
+        <div
+          className="geminiLogoBox"
+          onClick={() => props.setShowGpt((prevState) => !prevState)}
+        >
           <img src={logo} alt="..." className="geminiLogo" />
         </div>
       </div>
