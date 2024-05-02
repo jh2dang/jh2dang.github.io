@@ -8,6 +8,19 @@ import React, {
 import "./ChatGpt.css";
 import logo from "./minigpt.png";
 import ReactMarkdown from "react-markdown";
+import styled from "styled-components";
+
+const ChatbotGpt = styled.div`
+  background-color: rgb(240, 247, 243);
+  border: 1px solid #c4dfcf;
+  border-radius: 5px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+`;
 
 const ChatGpt = forwardRef((props, ref) => {
   const [messages, setMessages] = useState([]);
@@ -83,7 +96,7 @@ const ChatGpt = forwardRef((props, ref) => {
   }));
 
   return (
-    <div id="ChatbotGpt">
+    <ChatbotGpt>
       <div className="logoContainer">
         <div className="chatGptLogoBox">
           <img src={logo} alt="..." className="chatGptLogo" />
@@ -120,7 +133,7 @@ const ChatGpt = forwardRef((props, ref) => {
         )}
         <div ref={messagesEndRef} />
       </div>
-    </div>
+    </ChatbotGpt>
   );
 });
 

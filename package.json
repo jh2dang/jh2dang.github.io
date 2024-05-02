@@ -16,6 +16,7 @@
     "react-markdown": "^8.0.7",
     "react-scripts": "^3.2.0",
     "regenerator-runtime": "^0.14.1",
+    "styled-components": "^4.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -8,6 +8,19 @@ import React, {
 import "./ChatGpt.css";
 import logo from "./minigemini.png";
 import ReactMarkdown from "react-markdown";
+import styled from "styled-components";
+
+const ChatbotGemini = styled.div`
+  background-color: rgb(240, 244, 255);
+  border: 1px solid #cedcff;
+  border-radius: 5px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+`;
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -65,7 +78,7 @@ const Gemini = forwardRef((props, ref) => {
   }));
 
   return (
-    <div id="ChatbotGemini">
+    <ChatbotGemini>
       <div className="logoContainer">
         <div className="geminiLogoBox">
           <img src={logo} alt="..." className="geminiLogo" />
@@ -104,7 +117,7 @@ const Gemini = forwardRef((props, ref) => {
         )}
         <div ref={messagesEndRef} />
       </div>
-    </div>
+    </ChatbotGemini>
   );
 });
 

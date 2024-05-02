@@ -2,9 +2,14 @@ import React, { useState, useRef } from "react";
 import ChatGpt from "./ChatGpt";
 import Gemini from "./Gemini";
 import "./App.css";
-import minigemini from "./minigemini.png";
-import minigpt from "./minigpt.png";
+// import minigemini from "./minigemini.png";
+// import minigpt from "./minigpt.png";
+import styled from "styled-components";
 
+const Empty = styled.div`
+  width: 3%;
+  height: 100%;
+`;
 const App = () => {
   const [userInput, setUserInput] = useState("");
 
@@ -48,8 +53,11 @@ const App = () => {
           </div> */}
         </div>
         <div className="ContentContainer">
+          <Empty />
           <ChatGpt ref={chatGptRef} inputMessage={userInput.trim()} />
+          <Empty />
           <Gemini ref={geminiRef} inputMessage={userInput.trim()} />
+          <Empty />
         </div>
       </div>
     </div>
