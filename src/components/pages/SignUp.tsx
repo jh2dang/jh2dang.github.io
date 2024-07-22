@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../../assets/image 11.png";
+import logo from "../../assets/logoflatblack.png";
 
 const Container = styled.div`
   display: flex;
@@ -9,23 +9,25 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f4f4f9;
+  // background-color: #f4f4f9;
 `;
 
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 40px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
 
 const Input = styled.input`
-  padding: 15px;
-  border: 2px solid #ccc;
+  width: 80%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
   border-radius: 20px;
   &:focus {
     border-color: #6658f6;
@@ -33,7 +35,8 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 15px;
+  width: 95%;
+  padding: 12px 15px;
   background-color: #4483db;
   color: white;
   border: none;
@@ -43,11 +46,19 @@ const Button = styled.button`
   &:hover {
     background-color: #0855c2;
   }
+
+  transition: background-color 0.3s;
 `;
 
 const Title = styled.h1`
   color: #333;
   margin-bottom: 20px;
+`;
+
+const MiniText = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 `;
 
 function SignUp() {
@@ -65,7 +76,7 @@ function SignUp() {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <img src={logo} style={{ width: "100px" }} />
+        <img src={logo} style={{ width: "250px" }} />
         <Title>세이브윗 회원가입</Title>
         <Input
           type="email"
@@ -80,6 +91,7 @@ function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Sign Up</Button>
+        <MiniText onClick={() => navigate("/")}>홈으로</MiniText>
       </Form>
     </Container>
   );
