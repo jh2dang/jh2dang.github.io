@@ -13,19 +13,24 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 40px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
 
 const Input = styled.input`
-  padding: 15px;
-  border: 2px solid #ccc;
+  width: 80%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
   border-radius: 20px;
   &:focus {
     border-color: #6658f6;
@@ -33,7 +38,8 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 15px;
+  width: 95%;
+  padding: 10px 15px;
   background-color: #4483db;
   color: white;
   border: none;
@@ -43,11 +49,19 @@ const Button = styled.button`
   &:hover {
     background-color: #0855c2;
   }
+
+  transition: background-color 0.3s;
 `;
 
 const Title = styled.h1`
   color: #333;
   margin-bottom: 20px;
+`;
+
+const MiniText = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 `;
 
 function SignUp() {
@@ -80,6 +94,7 @@ function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Sign Up</Button>
+        <MiniText onClick={() => navigate("/")}>홈으로</MiniText>
       </Form>
     </Container>
   );
