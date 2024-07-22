@@ -20,7 +20,7 @@ function App() {
     setPlayerName("");
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleStart();
     }
