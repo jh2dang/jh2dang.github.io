@@ -1,18 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const LoadingMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  zindex: 20;
+  font-size: 18px;
+`;
 
 function UnityPage() {
   const navigate = useNavigate();
 
   const [playerName, setPlayerName] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const { unityProvider, sendMessage } = useUnityContext({
+  const {
+    unityProvider,
+    sendMessage,
+    isLoaded: unityIsLoaded,
+  } = useUnityContext({
     loaderUrl: "build/React.loader.js",
     dataUrl: "build/React.data",
     frameworkUrl: "build/React.framework.js",
     codeUrl: "build/React.wasm",
   });
+
+  useEffect(() => {
+    if (unityIsLoaded) {
+      setIsLoaded(true);
+    }
+  }, [unityIsLoaded]);
 
   const handleStart = () => {
     sendMessage("PlayerNameScript", "SetPlayerName", playerName);
@@ -118,6 +143,9 @@ function UnityPage() {
         >
           홈으로
         </button>
+        {!isLoaded && (
+          <LoadingMessage>Unity를 불러오는 중입니다...'ㅅ'</LoadingMessage>
+        )}
         <Unity
           unityProvider={unityProvider}
           devicePixelRatio={4}
