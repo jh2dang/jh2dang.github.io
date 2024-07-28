@@ -11,9 +11,9 @@ export default defineConfig({
       manifest: {
         name: 'Vite PWA Project',
         short_name: 'Vite PWA Project',
-        theme_color: '#ffffff',
+        theme_color: '#000000',
         display: "standalone",
-        background_color: "#ffffff",
+        background_color: "#000000",
         icons: [
             {
                 src: 'pwa-64x64.png',
