@@ -24,6 +24,7 @@ const MovingBackgroundContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   animation: ${animateBackground} 40s linear infinite;
+  background-color: black;
 `;
 
 const Title = styled.div`
