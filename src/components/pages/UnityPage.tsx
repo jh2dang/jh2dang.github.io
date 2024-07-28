@@ -26,6 +26,7 @@ function UnityPage() {
     unityProvider,
     sendMessage,
     isLoaded: unityIsLoaded,
+    unload
   } = useUnityContext({
     loaderUrl: "build/React.loader.js",
     dataUrl: "build/React.data",
@@ -40,6 +41,9 @@ function UnityPage() {
   }, [unityIsLoaded]);
 
   const handleStart = () => {
+    // TODO : 영어 입력 안되는 현상 수정 -> 유니티 스크립트 추가 수정 필요
+    // const encodedPlayerName = encodeURIComponent(playerName);
+    // sendMessage("PlayerNameScript", "SetPlayerName", encodedPlayerName);
     sendMessage("PlayerNameScript", "SetPlayerName", playerName);
     setPlayerName("");
   };
@@ -54,8 +58,14 @@ function UnityPage() {
     sendMessage("SceneController", "ChangeScene");
   };
 
-  const goHome = () => {
-    navigate("/");
+  const goHome = async () => {
+    try {
+      await unload();
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to unload Unity instance", error);
+      navigate("/"); // Ensure navigation even if unload fails
+    }
   };
 
   return (
