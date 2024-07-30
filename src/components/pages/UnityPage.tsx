@@ -28,10 +28,10 @@ function UnityPage() {
     isLoaded: unityIsLoaded,
     unload
   } = useUnityContext({
-    loaderUrl: "build/React.loader.js",
-    dataUrl: "build/React.data",
-    frameworkUrl: "build/React.framework.js",
-    codeUrl: "build/React.wasm",
+    loaderUrl: "build/WebGLBuild.loader.js",
+    dataUrl: "build/WebGLBuild.data",
+    frameworkUrl: "build/WebGLBuild.framework.js",
+    codeUrl: "build/WebGLBuild.wasm",
   });
 
   useEffect(() => {
@@ -40,10 +40,7 @@ function UnityPage() {
     }
   }, [unityIsLoaded]);
 
-  const handleStart = () => {
-    // TODO : 영어 입력 안되는 현상 수정 -> 유니티 스크립트 추가 수정 필요
-    // const encodedPlayerName = encodeURIComponent(playerName);
-    // sendMessage("PlayerNameScript", "SetPlayerName", encodedPlayerName);
+  const handleStart = () => {;
     sendMessage("PlayerNameScript", "SetPlayerName", playerName);
     setPlayerName("");
   };
