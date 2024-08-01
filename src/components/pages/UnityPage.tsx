@@ -19,12 +19,12 @@ const LoadingMessage = styled.div`
 function UnityPage() {
   const navigate = useNavigate();
 
-  const [playerName, setPlayerName] = useState("");
+  // const [playerName, setPlayerName] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
   const {
     unityProvider,
-    sendMessage,
+    // sendMessage,
     isLoaded: unityIsLoaded,
     unload
   } = useUnityContext({
@@ -40,20 +40,20 @@ function UnityPage() {
     }
   }, [unityIsLoaded]);
 
-  const handleStart = () => {;
-    sendMessage("PlayerNameScript", "SetPlayerName", playerName);
-    setPlayerName("");
-  };
+  // const handleStart = () => {;
+  //   sendMessage("PlayerNameScript", "SetPlayerName", playerName);
+  //   setPlayerName("");
+  // };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleStart();
-    }
-  };
+  // const handleKeyPress = (e: React.KeyboardEvent) => {
+  //   if (e.key === "Enter") {
+  //     handleStart();
+  //   }
+  // };
 
-  const changeScene = () => {
-    sendMessage("SceneController", "ChangeScene");
-  };
+  // const changeScene = () => {
+  //   sendMessage("SceneController", "ChangeScene");
+  // };
 
   const goHome = async () => {
     try {
