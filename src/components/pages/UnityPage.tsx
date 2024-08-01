@@ -68,7 +68,7 @@ function UnityPage() {
   return (
     <>
       <div style={{ position: "relative" }}>
-        <div
+        {/* <div
           style={{
             position: "absolute",
             opacity: "0.8",
@@ -113,8 +113,8 @@ function UnityPage() {
           >
             SEND
           </button>
-        </div>
-        <button
+        </div> */}
+        {/* <button
           onClick={changeScene}
           style={{
             position: "absolute",
@@ -131,7 +131,7 @@ function UnityPage() {
           }}
         >
           다음방
-        </button>
+        </button> */}
         <button
           onClick={goHome}
           style={{
