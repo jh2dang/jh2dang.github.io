@@ -18,13 +18,11 @@ const LoadingMessage = styled.div`
 
 function UnityPage() {
   const navigate = useNavigate();
-
-  // const [playerName, setPlayerName] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
   const {
     unityProvider,
-    // sendMessage,
+    sendMessage,
     isLoaded: unityIsLoaded,
     unload
   } = useUnityContext({
@@ -40,20 +38,22 @@ function UnityPage() {
     }
   }, [unityIsLoaded]);
 
-  // const handleStart = () => {;
-  //   sendMessage("PlayerNameScript", "SetPlayerName", playerName);
-  //   setPlayerName("");
-  // };
+  const sendDataToUnity = () => {
+    const data = {
+      roomName: "jeonghee",
+      furniture: [
+        {
+          name: "RoomName",
+          position: { x: 0, y: -0.65, z: 4.17 },
+          rotation: { x: 0, y: 0, z: 0 },
+          scale: { x: 0.158844, y: 1, z: 2.5286 }
+        }
+      ]
+    };
 
-  // const handleKeyPress = (e: React.KeyboardEvent) => {
-  //   if (e.key === "Enter") {
-  //     handleStart();
-  //   }
-  // };
-
-  // const changeScene = () => {
-  //   sendMessage("SceneController", "ChangeScene");
-  // };
+    // Send the JSON stringified data to Unity
+    sendMessage("CustomRoomManager", "ReceiveDataFromReact", JSON.stringify(data));
+  };
 
   const goHome = async () => {
     try {
@@ -68,54 +68,8 @@ function UnityPage() {
   return (
     <>
       <div style={{ position: "relative" }}>
-        {/* <div
-          style={{
-            position: "absolute",
-            opacity: "0.8",
-            top: "10%",
-            left: "10%",
-            display: "flex",
-            flexDirection: "row",
-            gap: "10px",
-            padding: "10px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            zIndex: 10,
-          }}
-        >
-          <input
-            type="text"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-            placeholder="채팅을 입력해 주세요."
-            style={{
-              height: "40px",
-              padding: "0 10px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-              fontSize: "16px",
-              outline: "none",
-            }}
-            onKeyDown={handleKeyPress}
-          />
-          <button
-            onClick={handleStart}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            SEND
-          </button>
-        </div> */}
-        {/* <button
-          onClick={changeScene}
+        <button
+          onClick={sendDataToUnity}
           style={{
             position: "absolute",
             opacity: "0.8",
@@ -130,8 +84,8 @@ function UnityPage() {
             padding: "10px",
           }}
         >
-          다음방
-        </button> */}
+          데이터받기
+        </button>
         <button
           onClick={goHome}
           style={{
