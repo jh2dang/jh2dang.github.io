@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logo from "../../assets/logoflatblack.png";
 
 // interface LoginFormProps {
-//   onSubmit: (email: string, password: string) => void;
+//   onSubmit: (userId: string, password: string) => void;
 // }
 
 const Container = styled.div`
@@ -66,13 +66,13 @@ const MiniText = styled.div`
 `;
 
 function LogIn() {
-  const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Login submitted:", email, password);
+    console.log("Login submitted:", userId, password);
     alert("로그인 성공!");
     navigate("/");
   };
@@ -83,15 +83,15 @@ function LogIn() {
         <img src={logo} style={{ width: "250px" }} />
         <Title>세이브윗 로그인</Title>
         <Input
-          type="email"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          type="userId"
+          value={userId}
+          placeholder="id"
+          onChange={(e) => setUserId(e.target.value)}
         />
         <Input
           type="password"
           value={password}
-          placeholder="Password"
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>

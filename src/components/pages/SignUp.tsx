@@ -1,3 +1,4 @@
+import { defaultInstance } from "../../apis/axios.ts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -62,15 +63,36 @@ const MiniText = styled.div`
 `;
 
 function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Signup submitted:", email, password);
-    navigate("/login");
-    alert("회원가입이 완료되었습니다.");
+    console.log("회원가입 제출", userId, password);
+
+    try {
+      const response = await defaultInstance.post("/user/joinUser", {
+        userId: userId,
+        userPassword: password,
+        userPasswordCheck: passwordCheck,
+        userName: userName,
+        userSmartToken: "",
+      });
+      if (response.data.result === "success") {
+        console.log(response.data.message);
+        alert(response.data.message);
+        navigate("/login");
+      } else {
+        console.log(response.data.message);
+        alert(response.data.message);
+      }
+      console.log(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -79,16 +101,28 @@ function SignUp() {
         <img src={logo} style={{ width: "250px" }} />
         <Title>세이브윗 회원가입</Title>
         <Input
-          type="email"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          value={userId}
+          placeholder="아이디"
+          onChange={(e) => setUserId(e.target.value)}
         />
         <Input
           type="password"
           value={password}
-          placeholder="Password"
+          placeholder="비밀번호"
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <Input
+          type="password"
+          value={passwordCheck}
+          placeholder="비밀번호 확인"
+          onChange={(e) => setPasswordCheck(e.target.value)}
+        />
+        <Input
+          type="text"
+          value={userName}
+          placeholder="이름"
+          onChange={(e) => setUserName(e.target.value)}
         />
         <Button type="submit">Sign Up</Button>
         <MiniText onClick={() => navigate("/")}>홈으로</MiniText>
